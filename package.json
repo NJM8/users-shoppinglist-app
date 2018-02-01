@@ -1,0 +1,31 @@
+{
+  "name": "users-shoppinglist-app",
+  "version": "1.0.0",
+  "description": "A basic shopping list appliction deployed with Heroku, using authentication, user management, and CRUD on a shopping list database",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NJM8/users-shoppinglist-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NJM8/users-shoppinglist-app/issues"
+  },
+  "homepage": "https://github.com/NJM8/users-shoppinglist-app#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "cookie-sessions": "0.0.2",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
+    "method-override": "^2.3.10",
+    "mongoose": "^5.0.3",
+    "pug": "^2.0.0-rc.4"
+  }
+}
