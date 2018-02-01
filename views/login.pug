@@ -1,0 +1,10 @@
+extends base
+
+block content
+  h1 Log In
+  form(action='/users/login' method="POST")
+    label User name:
+    input(type="text" name="username")
+    label Password:
+    input(type="password" name="password")
+    input(type="submit" value="Log in")
