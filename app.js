@@ -1,0 +1,1 @@
+// if (app.get('env') == 'development'){ require('dotenv').config(); }
