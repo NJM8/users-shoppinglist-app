@@ -1,6 +1,6 @@
 // npm packages
-if (app.get('env') == 'development') { 
-  require('dotenv').config(); 
+if (app.get('env') === 'development') { 
+  require('dotenv').load(); 
 }
 const express = require('express');
 const methodOverride = require('method-override');
@@ -17,7 +17,7 @@ const app = express();
 app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
-app.use(session({secret: process.env.SECRET_KEY}));
+app.use(session({secret: process.env.KEY}));
 app.use(flash());
 app.use('/users', userRoutes);
 app.use((req, res, next) => {
