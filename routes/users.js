@@ -24,7 +24,7 @@ router
         if (isMatch) {
           req.session.user_id = user.id;
           req.flash('message', 'Logged in!');
-          return res.render('showUser', { user });
+          return res.render('showUser', { user, message: req.flash('message') });
         } else {
           req.flash('message', 'Invalid password!');
           return res.redirect('/users/login');
