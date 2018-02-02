@@ -21,15 +21,15 @@ app.use(methodOverride('_method'));
 app.use(session({secret: process.env.KEY}));
 app.use(flash());
 app.use('/users', userRoutes);
-app.use(function(req, res, next){
-  res.locals.message = req.flash('message');
-  return next();
-});
 
 app.get('/', (req, res, next) => {
   return res.redirect('/users');
 });
 
+app.use(function(req, res, next){
+  res.locals.message = req.flash('message');
+  next();
+});
 // catch 404 and send to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
