@@ -13,7 +13,6 @@ router
   .route('/login')
   .get((req, res, next) => {
     return res.render('login');
-    // message only seems to show when passing { message: req.flash('message') but I thought handler took care of that?
   })
   .post((req, res, next) => {
     return db.User.findOne({'username': req.body.username}).then(function(user){
@@ -54,6 +53,7 @@ router
       });
     }
   });
+
 
 router
   .route('/logout')

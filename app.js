@@ -1,7 +1,8 @@
 // npm packages
 const express = require('express');
-const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const morgan = require('morgan');
 const session = require('cookie-session');
 const flash = require('connect-flash');
 const userRoutes = require('./routes/users');
@@ -18,18 +19,23 @@ if (app.get('env') === 'development') {
 app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
+app.use(morgan('tiny'));
 app.use(session({secret: process.env.KEY}));
 app.use(flash());
-app.use('/users', userRoutes);
 
 app.get('/', (req, res, next) => {
   return res.redirect('/users');
 });
 
+// send flash messages to all routes
 app.use(function(req, res, next){
   res.locals.message = req.flash('message');
   next();
 });
+
+// get routes
+app.use('/users', userRoutes);
+
 // catch 404 and send to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
