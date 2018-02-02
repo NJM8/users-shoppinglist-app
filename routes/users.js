@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.router();
+const router = express.Router();
 const db = require('../models');
 const authMiddleware = require('../middleware/auth');
 
@@ -15,14 +15,18 @@ router
     return res.render('login');
   })
   .post((req, res, next) => {
-    return db.User.fineOne({name: req.body.username}).then(user => {
-      user.comparePassword(req.body.password, (err, isMatch) => {
+    return db.User.findOne({'username': req.body.username}).then(function(user){
+      if (!user) {
+        req.flash('message', 'Invalid Username, do you need to sign up?')
+        return res.redirect('/users/login');
+      }
+      user.comparePassword(req.body.password, function(err, isMatch){
         if (isMatch) {
           req.session.user_id = user.id;
           req.flash('message', 'Logged in!');
-          return res.redirect('/showUser');
+          return res.render('showUser', { user });
         } else {
-          req.flash('message', 'Invalid credentials!');
+          req.flash('message', 'Invalid password!');
           return res.redirect('/users/login');
         }
       })
@@ -37,9 +41,17 @@ router
     return res.render('newUser');
   })
   .post((req, res, next) => {
-    db.User.create(req.body).then(user => {
-      return res.redirect('/users/login');
-    })
+    if (req.body.password !== req.body.confirmPassword) {
+      req.flash('message', 'Passwords do not match');
+      return res.redirect('/users/signup');
+    } else {
+      return db.User.create(req.body).then(user => {
+        req.flash('message', 'Signed up, now log in please');
+        return res.redirect('/users/login');
+      }).catch(err => {
+        return next(err);
+      });
+    }
   });
 
 router
@@ -47,7 +59,7 @@ router
   .get((req, res, next) => {
     req.session.user_id = null;
     req.flash('message', 'Logged out!');
-    return res.redirect('/users/login');
+    return res.redirect('/');
   });
 
 

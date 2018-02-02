@@ -3,9 +3,11 @@ extends base
 block content
   h1 Sign Up
 
-  form(action='/users/signup' method="POST")
+  form(action="/users/signup" method="POST")
     label User name:
     input(type="text" name="username")
     label Password:
     input(type="password" name="password")
+    label Confirm Password:
+    input(type="password" name="confirmPassword")
     input(type="submit" value="Log in")

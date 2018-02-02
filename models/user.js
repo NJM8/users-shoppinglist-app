@@ -10,9 +10,9 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  }
-  list: [{
-    type: mongoose.Schema.Types.ObjectID,
+  },
+  item: [{
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Item'
   }]
 }, 
@@ -26,7 +26,7 @@ userSchema.pre('save', function(next){
   }
   bcrypt.hash(user.password, 10).then(function(hashedPassword){
     user.password = hashedPassword;
-    next();
+    return next();
   }, function(err){
     return next(err);
   })
@@ -37,8 +37,11 @@ userSchema.methods.comparePassword = function(candidatePassword, next){
     if (err) {
       return next(err);
     }
-    next(null, isMatch);
+    return next(null, isMatch);
   });
 };
 
-module.exports = mongoose.Model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);
+
+
+

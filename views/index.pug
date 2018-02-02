@@ -1,4 +1,10 @@
 extends base
 
 block content
-  h1 Welcome!
+  h1 Welcome to the shopping list app
+
+  form(action="/users/signup")
+    input(type="submit" value="Sign Up")
+
+  form(action="/users/login")
+    input(type="submit" value="Log In")

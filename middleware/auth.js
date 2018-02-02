@@ -1,7 +1,7 @@
 exports.loginRequired = function(req, res, next){
   if (!req.session.user_id) {
     req.flash('error', 'Please log in');
-    res.redirect('/users/login');
+    return res.redirect('/users/login');
   } else {
     next();
   }
@@ -10,6 +10,6 @@ exports.loginRequired = function(req, res, next){
 exports.ensureCorrectUser = function(req, res, next){
   if (req.sessions.user_id !== req.params.id) {
     req.flash('error', 'Unauthorized!');
-    res.redirect('/users');
+    return res.redirect('/users');
   }
 }
