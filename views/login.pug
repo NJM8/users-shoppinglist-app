@@ -1,10 +1,24 @@
 extends base
 
 block content
-  h1 Log In
-  form(action='/users/login' method="POST")
-    label User name:
-    input(type="text" name="username")
-    label Password:
-    input(type="password" name="password")
-    input(type="submit" value="Log in")
+  if username
+    h1 Welcome back #{username}, please log innnnnnnnnnnnn.
+    form(action='/users/login' method="POST")
+      label User name:
+      input(type="text" name="username" value="#{username}")
+      label Password:
+      input(type="password" name="password")
+      input(type="submit" value="Log in")
+    h4 Not #{username} ? 
+    form(action="/users/signup")
+      input(type="submit" value="signup")
+    form(action="/users/login/diff")
+      input(type="submit" value="Log in under a different user")
+  else 
+    h1 Log In
+    form(action='/users/login' method="POST")
+      label User name:
+      input(type="text" name="username")
+      label Password:
+      input(type="password" name="password")
+      input(type="submit" value="Log in")

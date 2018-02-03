@@ -3,7 +3,12 @@ html(lang="en")
 head
   meta(charset="UTF-8")
   title Shopping List
-body
-  if message
+body 
+  if message[0] === 'Invalid Username, do you need to sign up?'
     p #{message}
+    form(action="/users/signup")
+      input(type="submit" value="Sign up")
+  else 
+    p #{message}
+  
   block content

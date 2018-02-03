@@ -6,7 +6,8 @@ const authMiddleware = require('../middleware/auth');
 router
   .route('/')
   .get(authMiddleware.loginRequired, (req, res, next) => {
-    return res.render('index');
+    console.log(`Hi, ${req.session.username}`);
+    return res.render('index', { username: req.session.username });
   });
 
 router
@@ -23,6 +24,7 @@ router
       user.comparePassword(req.body.password, function(err, isMatch){
         if (isMatch) {
           req.session.user_id = user.id;
+          req.session.username = user.username;
           req.flash('message', 'Logged in!');
           return res.render('showUser', { user, message: req.flash('message') });
         } else {
@@ -34,6 +36,14 @@ router
       return next(err);
     })
   });
+
+router
+  .route('/login/diff')
+  .get((req, res, next) => {
+    req.session.user_id = null;
+    req.session.username = null;
+    return res.redirect('/users/login');
+  })
 
 router
   .route('/signup')

@@ -1,6 +1,6 @@
 exports.loginRequired = function(req, res, next){
   if (req.session.user_id) {
-    req.flash('error', 'Please log in');
+    req.flash('message', `Welcome back ${req.session.username}, please log in.`);
     return res.redirect('/users/login');
   } else {
     next();
