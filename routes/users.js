@@ -6,14 +6,13 @@ const authMiddleware = require('../middleware/auth');
 router
   .route('/')
   .get(authMiddleware.loginRequired, (req, res, next) => {
-    console.log(`Hi, ${req.session.username}`);
-    return res.render('index', { username: req.session.username });
+    return res.render('index');
   });
 
 router
   .route('/login')
   .get((req, res, next) => {
-    return res.render('login');
+    return res.render('login', { username: req.session.username });
   })
   .post((req, res, next) => {
     return db.User.findOne({'username': req.body.username}).then(function(user){
@@ -59,6 +58,10 @@ router
         req.flash('message', 'Signed up, now log in please');
         return res.redirect('/users/login');
       }).catch(err => {
+        if (err.code === 11000) {
+          req.flash('message', 'That username already exists, login or use a different username');
+          res.redirect('/');
+        }
         return next(err);
       });
     }
@@ -69,6 +72,7 @@ router
   .route('/logout')
   .get((req, res, next) => {
     req.session.user_id = null;
+    req.session.username = null;
     req.flash('message', 'Logged out!');
     return res.redirect('/');
   });

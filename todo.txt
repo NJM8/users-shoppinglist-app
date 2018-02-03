@@ -5,40 +5,4 @@ Todo before Heroku release and testing
 // fix accessing req.session.username in template for login page if/else clause to show signup 
 // try using locus to debug to see what the value is?? look up tutorial
 
-or use this:
-
-@NJM8 Why not use a boolean value?
-
-Or..let me give an example of how I use req.flash..
-Here's my flash route
-
-app.route('/failedLogin').get((req, res) => {
-        req.flash(
-            'failedLogin',
-            'We do not recognize your username or password. Please try again.'
-        );
-        res.redirect('/login');
-    });
-
-My Login route
-
-    app
-        .route('/login')
-        .get((req, res) => {
-            let failedLogin = req.flash('failedLogin');
-            res.render('login.hbs', { failedLogin });
-        })
-        .post(
-            passport.authenticate('local', { failureRedirect: '/failedLogin' }),
-            (req, res) => {
-                res.redirect('/');
-            }
-        );
-
-So here, you can see that I create a variable failedLogin that is undefined unless my flash route is hit. So in my template I have
-
-          {{#if failedLogin}}
-          <div class="alert alert-dismissible alert-danger">
-            <button class="close" type="button" data-dismiss="alert">&times;</button>
-            {{failedLogin}}
 

@@ -2,14 +2,15 @@ extends base
 
 block content
   if username
-    h1 Welcome back #{username}, please log innnnnnnnnnnnn.
+    h1 Log in
     form(action='/users/login' method="POST")
       label User name:
-      input(type="text" name="username" value="#{username}")
+      input(type="text" name="username" value=`${username}`)
       label Password:
       input(type="password" name="password")
       input(type="submit" value="Log in")
-    h4 Not #{username} ? 
+        
+    h4 Not #{username}? 
     form(action="/users/signup")
       input(type="submit" value="signup")
     form(action="/users/login/diff")
