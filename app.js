@@ -53,6 +53,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(8000, () => {
-  console.log('App is being served on port 8000');
+app.listen(PORT, () => {
+  console.log(`App is being served on port ${PORT}`);
 })
