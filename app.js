@@ -45,11 +45,16 @@ app.use((req, res, next) => {
 
 // error handler
 app.use((err, req, res, next) => {
+  let mode = app.get('env');
+  console.log(mode);
+  if (mode === 'development') {
+    console.log(err);
+  }
   res.status(err.status || 500);
   return res.render('error', {
     message: err.message,
     // if in development mode print full stack trace
-    error: app.get('env') === 'development' ? err : {}
+    error: mode === 'development' ? err : {}
   });
 });
 

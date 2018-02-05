@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  isAdmin: {
+    type: Boolean,
+    default: false
+  },
   item: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Item'

@@ -1,0 +1,18 @@
+extends base
+
+block content
+  h1 Edit your name and password
+  form(action=`/users/${user.id}/edit?_method=PATCH` method="POST")
+    label User name:
+    input(type="text" name="username" value=`${user.username}`)
+    label Old Password:
+    input(type="password" name="password")
+    label Confirm Password:
+    input(type="password" name="confirmPassword")
+    br
+    label New Password:
+    input(type="password" name="newPassword")
+    label Confirm New Password:
+    input(type="password" name="confirmNewPassword")
+    input(type="submit" value="Edit user")
+    input(type="submit" value="Delete user" formaction=`/users/${user.id}/edit?_method=DELETE`)

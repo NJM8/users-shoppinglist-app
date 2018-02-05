@@ -1,0 +1,17 @@
+extends base
+
+block content
+  h2 Please enter admin password
+  form(action="/users/signup" method="POST")
+    label User name:
+    input(type="text" name="username" value=`${tempUser.username}`)
+    label Password:
+    input(type="password" name="password" value=`${tempUser.password}`)
+    label Confirm Password:
+    input(type="password" name="confirmPassword" value=`${tempUser.confirmPassword}`)
+    select(name="isAdmin")
+      option(value="false") False
+      option(value="true" selected) True
+    label Admin Password:
+    input(type="password" name="adminPassword")
+    input(type="submit" value="Sign up")
