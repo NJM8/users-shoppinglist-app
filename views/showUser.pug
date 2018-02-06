@@ -1,7 +1,17 @@
 extends base
 
 block content
-  h1 Hi #{user.username}, there is not much here yet
+  h1 Hi #{user.username}, here is your shopping list
+
+  for item in user.items
+    p Item: #{item.name} Quantity: #{item.quantity}
+      form(style="display:inline" action=`/users/${user.id}/items/editItem/${item.id}`)
+        input(type="submit" value="Edit Item")
+      form(style="display:inline" action=`/users/${user.id}/items/editItem/${item.id}?_method=DELETE` method="POST")
+        input(type ="submit" value="Completed")
+
+  form(action=`/users/${user.id}/items/newItem`)
+    input(type="submit" value="Add Item")
 
   if user.isAdmin
     form(action=`/users/allUsers/${user.id}`)

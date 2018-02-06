@@ -1,0 +1,9 @@
+extends base
+
+block content
+  form(action=`/users/${item.user.id}/items/editItem/${item.id}?_method=PATCH` method="POST")
+    label Item:
+    input(type="text" name="name" value=`${item.name}`)
+    label Quantity
+    input(type="text" name="quantity" value=`${item.quantity}`)
+    input(type="submit" value="Update Item")

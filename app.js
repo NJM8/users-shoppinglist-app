@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const session = require('cookie-session');
 const flash = require('connect-flash');
 const userRoutes = require('./routes/users');
+const itemRoutes = require('./routes/items');
 
 //globals
 const PORT = process.env.PORT || 8000;
@@ -35,6 +36,7 @@ app.use(function(req, res, next){
 
 // get routes
 app.use('/users', userRoutes);
+app.use('/users/:user_id/items', itemRoutes);
 
 // catch 404 and send to error handler
 app.use((req, res, next) => {

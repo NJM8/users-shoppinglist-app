@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  item: [{
+  items: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Item'
   }]

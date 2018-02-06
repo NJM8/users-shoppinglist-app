@@ -96,7 +96,7 @@ router
   .route('/:user_id')
   // GET /users/:user_id - This route should show a users page after they have been logged in.
   .get((req, res, next) => {
-    return db.User.findById(req.params.user_id).then(user => {
+    return db.User.findById(req.params.user_id).populate('items').exec().then(user => {
       return res.render('showUser', { user });
     }).catch(err => {
       return next(err);
