@@ -3,6 +3,10 @@ extends base
 block content
   h1 Hi #{user.username}, there is not much here yet
 
+  if user.isAdmin
+    form(action=`/users/allUsers/${user.id}`)
+      input(type="submit" value="See all users")
+
   form(action=`/users/${user.id}/edit`)
     input(type="submit" value="Edit user")
 

@@ -16,3 +16,6 @@ block content
     input(type="password" name="confirmNewPassword")
     input(type="submit" value="Edit user")
     input(type="submit" value="Delete user" formaction=`/users/${user.id}/edit?_method=DELETE`)
+
+  form(action=`/users/${user.id}`)
+    input(type="submit" value="Back to your page")

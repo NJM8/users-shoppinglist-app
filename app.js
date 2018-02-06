@@ -46,7 +46,6 @@ app.use((req, res, next) => {
 // error handler
 app.use((err, req, res, next) => {
   let mode = app.get('env');
-  console.log(mode);
   if (mode === 'development') {
     console.log(err);
   }
