@@ -27,6 +27,9 @@ router
     if (req.body.password !== req.body.confirmPassword) {
       req.flash('message', 'Passwords do not match');
       return res.redirect('/users/signup');
+    } else if (!(/.{8}/).test(req.body.password)){
+      req.flash('message', 'Password does not meet requirements');
+      return res.redirect('/users/signup');
     } else {
       return db.User.create(req.body).then(user => {
         req.flash('message', 'Signed up, welcome');
