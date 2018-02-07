@@ -5,7 +5,7 @@ block content
   form(action=`/users/${user.id}/edit?_method=PATCH` method="POST")
     label User name:
     input(type="text" name="username" value=`${user.username}`)
-    label Old Password:
+    label Current Password:
     input(type="password" name="password")
     label Confirm Password:
     input(type="password" name="confirmPassword")

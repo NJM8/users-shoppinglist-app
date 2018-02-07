@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
+const Item = require('./item');
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -24,7 +25,7 @@ const userSchema = new mongoose.Schema({
 );
 
 userSchema.pre('save', function(next){
-  var user = this;
+  let user = this;
   if (!user.isModified('password')) {
     return next();
   }
@@ -33,7 +34,19 @@ userSchema.pre('save', function(next){
     return next();
   }, function(err){
     return next(err);
-  })
+  });
+});
+
+userSchema.pre('remove', function(next){
+  let user = this;
+  Item.find({ user: this.id}).then(items => {
+    items.forEach(item => {
+      item.remove();
+    });
+    return next();
+  }).catch(err => {
+    return next(err);
+  });
 });
 
 userSchema.methods.comparePassword = function(candidatePassword, next){

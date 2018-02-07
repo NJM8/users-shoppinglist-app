@@ -174,6 +174,7 @@ router
         req.session.user_id = null;
         req.session.username = null;
         user.remove();
+        req.flash('message', 'User and all associated items deleted');
         return res.redirect('/users');
         }
       })
@@ -201,7 +202,9 @@ router
   .route('/admin/:admin_id/deleteUser/:user_id')
   // GET /users/admin/:admin_id/deleteUser/:user_id - this route can be used by admin to delete another user.
   .delete((req, res, next) => {
-    db.User.findByIdAndRemove(req.params.user_id).then(() => {
+    db.User.findById(req.params.user_id).then(user => {
+      user.remove();
+      req.flash('message', `${user.username} and all their items have been deleted`);
       return res.redirect(`/users/allUsers/${req.params.admin_id}`);
     }).catch(err => {
       return next(err);
