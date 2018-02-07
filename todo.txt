@@ -1,8 +1,0 @@
-Todo before Heroku release and testing
-
-// fix double sign up error
-
-// fix accessing req.session.username in template for login page if/else clause to show signup 
-// try using locus to debug to see what the value is?? look up tutorial
-
-
