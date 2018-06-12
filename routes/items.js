@@ -15,6 +15,11 @@ router
   })
   // POST /users/:user_id/items/newItem - This route will add a new item to the db with a ref to owner and redirect back to the users page
   .post(authMiddleware.ensureCorrectUser, (req, res, next) => {
+    console.log(req.body);
+    if (isNaN(Number(req.body.quantity))){
+      req.flash('message', 'Quantity must be a number');
+      return res.redirect(`/users/${req.params.user_id}/items/newItem`);
+    }
     let newItem = new db.Item(req.body);
     let userId = req.params.user_id;
     newItem.user = userId;
