@@ -1,9 +1,13 @@
 extends base
 
 block content
-  form(action=`/users/${item.user.id}/items/editItem/${item.id}?_method=PATCH` method="POST")
-    label Item:
-    input(type="text" name="name" value=`${item.name}`)
-    label Quantity
-    input(type="text" name="quantity" value=`${item.quantity}`)
-    input(type="submit" value="Update Item")
+  h1(class="col-3 offset-1") Edit Item
+  div(class="col-4 offset-1")
+    form(action=`/users/${item.user.id}/items/editItem/${item.id}?_method=PATCH` method="POST")
+      div(class="form-group")
+        label Item:
+        input(type="text" name="name" value=`${item.name}` class="form-control")
+      div(class="form-group")      
+        label Quantity
+        input(type="text" name="quantity" value=`${item.quantity}` class="form-control")
+      input(type="submit" value="Update Item" class="btn btn-primary")

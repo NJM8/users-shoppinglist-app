@@ -1,10 +1,11 @@
 extends base
 
 block content
-  h1 Welcome to the shopping list app
+  h1(class="col-6 offset-1") My Shopping List
 
-  form(action="/users/signup")
-    input(type="submit" value="Sign Up")
+  div(class="col-4 offset-1 mt-5")
+    form(action="/users/signup" class="m-2")
+      input(class="btn btn-info" type="submit" value="Sign Up")
 
-  form(action="/users/login")
-    input(type="submit" value="Log In")
+    form(action="/users/login" class="m-2")
+      input(class="btn btn-info" type="submit" value="Log In")

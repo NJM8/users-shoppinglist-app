@@ -1,0 +1,50 @@
+* {
+	margin: 0;
+	padding: 0;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  font-family: 'Cabin', sans-serif;
+  font-size: 1.05rem;
+}
+
+html, body {
+  max-width: 100%;
+}
+
+img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+  
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -10;
+  will-change: scroll-position;
+}
+
+.pageContent {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1 0 auto;
+}
+
+.footer {
+  padding: 10px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+a {
+  color: black;
+}

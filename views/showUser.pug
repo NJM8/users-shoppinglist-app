@@ -1,24 +1,32 @@
 extends base
 
 block content
-  h1 Hi #{user.username}, here is your shopping list
+  h1(class="col-5 offset-1") Hi #{user.username}, 
+  h1(class="col-5 offset-1") here is your shopping list
+  div(class="col-5 offset-1 mt-3 mb-3")
+    ul(class="list-group mt-2 mb-2")
+      for item in user.items
+        li(class="list-group-item d-flex justify-content-around") 
+          p Item: 
+            span(class="font-weight-bold") #{item.name} 
+          p | Quantity: 
+            span(class="font-weight-bold") #{item.quantity}
+          form(style="display:inline" action=`/users/${user.id}/items/editItem/${item.id}`)
+            input(type="submit" value="Edit" class="btn btn-sm btn-info") 
+          form(style="display:inline" action=`/users/${user.id}/items/editItem/${item.id}?_method=DELETE` method="POST")
+            input(type ="submit" value="Completed" class="btn btn-sm btn-success")
 
-  for item in user.items
-    p Item: #{item.name} Quantity: #{item.quantity}
-      form(style="display:inline" action=`/users/${user.id}/items/editItem/${item.id}`)
-        input(type="submit" value="Edit Item")
-      form(style="display:inline" action=`/users/${user.id}/items/editItem/${item.id}?_method=DELETE` method="POST")
-        input(type ="submit" value="Completed")
-
-  form(action=`/users/${user.id}/items/newItem`)
-    input(type="submit" value="Add Item")
-
-  if user.isAdmin
-    form(action=`/users/allUsers/${user.id}`)
-      input(type="submit" value="See all users")
-
-  form(action=`/users/${user.id}/edit`)
-    input(type="submit" value="Edit user")
-
-  form(action="/users/logout")
-    input(type="submit" value="Logout")
+  div(class="col-5 offset-1 d-flex justify-content-around")
+    div(class="form-group")
+      form(action=`/users/${user.id}/items/newItem`)
+        input(type="submit" value="Add Item" class="btn btn-info")
+    if user.isAdmin
+      div(class="form-group")
+        form(action=`/users/allUsers/${user.id}`)
+          input(type="submit" value="See all users" class="btn btn-info")
+    div(class="form-group")      
+      form(action=`/users/${user.id}/edit`)
+        input(type="submit" value="Edit user" class="btn btn-info")
+    div(class="form-group")
+      form(action="/users/logout")
+        input(type="submit" value="Logout" class="btn btn-warning")

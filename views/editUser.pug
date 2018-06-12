@@ -1,22 +1,26 @@
 extends base
 
 block content
-  h1 Edit your name and password
-  form(action=`/users/${user.id}/edit?_method=PATCH` method="POST")
-    label User name:
-    input(type="text" name="username" value=`${user.username}`)
-    label Current Password:
-    input(type="password" name="password")
-    label Confirm Password:
-    input(type="password" name="confirmPassword")
-    br
-    label New Password:
-    input(type="password" name="newPassword")
-    label Confirm New Password:
-    input(type="password" name="confirmNewPassword")
-    input(type="submit" value="Edit user")
-    input(type="submit" value="Delete user" formaction=`/users/${user.id}/edit?_method=DELETE`)
-  p Enter your current password to make any changes.
-
-  form(action=`/users/${user.id}`)
-    input(type="submit" value="Back to your page")
+  h1(class="col-6 offset-1") Edit your name and password
+  div(class="col-5 offset-1")
+    form(action=`/users/${user.id}/edit?_method=PATCH` method="POST")
+      div(class="form-group")
+        label User name:
+        input(type="text" name="username" value=`${user.username}` class="form-control")
+      div(class="form-group")
+        label Current Password:
+        input(type="password" name="password" class="form-control")
+      div(class="form-group")
+        label Confirm Current Password:
+        input(type="password" name="confirmPassword" class="form-control")
+      div(class="form-group")
+        label New Password:
+        input(type="password" name="newPassword" class="form-control")
+      div(class="form-group")
+        label Confirm New Password:
+        input(type="password" name="confirmNewPassword" class="form-control")
+  div(class="col-5 offset-1 d-flex justify-content-around")
+    form(action=`/users/${user.id}`)
+      input(type="submit" value="Back to your page" class="btn btn-primary")
+    input(type="submit" value="Delete user" formaction=`/users/${user.id}/edit?_method=DELETE` class="btn btn-danger")
+    input(type="submit" value="Edit user" class="btn btn-success")

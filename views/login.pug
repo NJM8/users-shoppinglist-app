@@ -2,24 +2,37 @@ extends base
 
 block content
   if username
-    h1 Log in
-    form(action='/users/login' method="POST")
-      label User name:
-      input(type="text" name="username" value=`${username}`)
-      label Password:
-      input(type="password" name="password")
-      input(type="submit" value="Log in")
-        
-    h4 Not #{username}? 
-    form(action="/users/signup")
-      input(type="submit" value="signup")
-    form(action="/users/login/diff")
-      input(type="submit" value="Log in under a different user")
+    h1(class="col-6 offset-1") Log in
+    br
+    br
+    div(class="col-4 offset-1")
+      form(action='/users/login' method="POST")
+        div(class="form-group")
+          label User name:
+          input(type="text" name="username" value=`${username}` class="form-control")
+        div(class="form-group")
+          label Password:
+          input(type="password" name="password" class="form-control")
+        input(type="submit" value="Log in" class="btn btn-primary")
+
+    div(class="col-5 offset-1 mt-5 d-flex justify-content-around")
+      h4 Not #{username}? 
+      div(class="form-group")
+        form(action="/users/signup")
+          input(type="submit" value="signup" class="btn btn-info")
+      div(class="form-group")  
+        form(action="/users/login/diff")
+          input(type="submit" value="Log in under a different user" class="btn btn-success")
   else 
-    h1 Log In
-    form(action='/users/login' method="POST")
-      label User name:
-      input(type="text" name="username")
-      label Password:
-      input(type="password" name="password")
-      input(type="submit" value="Log in")
+    h1(class="col-6 offset-1") Log In
+    br
+    br
+    div(class="col-4 offset-1")
+      form(action='/users/login' method="POST")
+        div(class="form-group")
+          label User name:
+          input(type="text" name="username" class="form-control")
+        div(class="form-group")
+          label Password:
+          input(type="password" name="password" class="form-control")
+        input(type="submit" value="Log in" class="btn btn-primary")

@@ -1,18 +1,23 @@
 extends base
 
 block content
-  h1 Sign Up
-
-  form(action="/users/signup" method="POST")
-    label User name:
-    input(type="text" name="username")
-    label Password:
-    input(type="password" name="password")
-    label Confirm Password:
-    input(type="password" name="confirmPassword")
-    label Admin?
-    select(name="isAdmin")
-      option(value="false" selected) False
-      option(value="true") True
-    input(type="submit" value="Sign up")
-  p Please make your password at least 8 characters long
+  h1(class="col-6 offset-1") Sign Up
+  br
+  br
+  div(class="col-4 offset-1")
+    form(action="/users/signup" method="POST")
+      div(class="form-group")
+        label User name:
+        input(type="text" name="username" class="form-control" placeholder="Minumum 4 characters")
+      div(class="form-group")      
+        label Password:
+        input(type="password" name="password" class="form-control" placeholder="Minimum 8 characters")
+      div(class="form-group")
+        label Confirm Password:
+        input(type="password" name="confirmPassword" class="form-control" placeholder="Make sure it matches")
+      div(class="form-group")      
+        label Admin?
+        select(name="isAdmin" class="form-control")
+          option(value="false" selected) False
+          option(value="true") True
+      input(type="submit" value="Sign up" class="btn btn-primary")
