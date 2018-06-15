@@ -5,7 +5,7 @@ block content
     h1(class="col-6 offset-1") Log in
     br
     br
-    div(class="col-4 offset-1")
+    div(class="container col-xs-6 col-sm-4 offset-sm-1")
       form(action='/users/login' method="POST")
         div(class="form-group")
           label User name:
@@ -19,7 +19,7 @@ block content
       h4 Not #{username}? 
       div(class="form-group")
         form(action="/users/signup")
-          input(type="submit" value="signup" class="btn btn-info")
+          input(type="submit" value="Sign up" class="btn btn-info")
       div(class="form-group")  
         form(action="/users/login/diff")
           input(type="submit" value="Log in under a different user" class="btn btn-success")
@@ -27,7 +27,7 @@ block content
     h1(class="col-6 offset-1") Log In
     br
     br
-    div(class="col-4 offset-1")
+    div(class="container col-xs-6 col-sm-4 offset-sm-1")
       form(action='/users/login' method="POST")
         div(class="form-group")
           label User name:

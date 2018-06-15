@@ -1,8 +1,8 @@
 extends base
 
 block content
-  h1(class="col-6 offset-1") Edit your name and password
-  div(class="col-5 offset-1")
+  h1(class="col-10 offset-1") Edit your name and password
+  div(class="container col-12 col-sm-6 offset-sm-1")
     form(action=`/users/${user.id}/edit?_method=PATCH` method="POST")
       div(class="form-group")
         label User name:
@@ -19,8 +19,8 @@ block content
       div(class="form-group")
         label Confirm New Password:
         input(type="password" name="confirmNewPassword" class="form-control")
-  div(class="col-5 offset-1 d-flex justify-content-around")
+  div(class="col-12 col-sm-6 offset-sm-1 d-flex justify-content-around flex-column flex-md-row align-items-center")
     form(action=`/users/${user.id}`)
-      input(type="submit" value="Back to your page" class="btn btn-primary")
-    input(type="submit" value="Delete user" formaction=`/users/${user.id}/edit?_method=DELETE` class="btn btn-danger")
-    input(type="submit" value="Edit user" class="btn btn-success")
+      input(type="submit" value="Back to your page" class="btn btn-primary m-1")
+    input(type="submit" value="Delete user" formaction=`/users/${user.id}/edit?_method=DELETE` class="btn btn-danger m-1")
+    input(type="submit" value="Edit user" class="btn btn-success m-1")

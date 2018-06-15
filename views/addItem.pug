@@ -2,7 +2,7 @@ extends base
 
 block content
   h1(class="col-3 offset-1") New Item
-  div(class="col-4 offset-1")
+  div(class="container col-xs-6 col-sm-4 offset-sm-1")
     form(action=`/users/${user.id}/items/newItem` method="POST")
       div(class="form-group")
         label Item Name:

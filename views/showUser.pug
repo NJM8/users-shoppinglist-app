@@ -1,20 +1,22 @@
 extends base
 
 block content
-  h1(class="col-5 offset-1") Hi #{user.username}, 
-  h1(class="col-5 offset-1") here is your shopping list
-  div(class="col-5 offset-1 mt-3 mb-3")
+  h1(class="col-10 offset-1") Hi #{user.username}, 
+  h1(class="col-10 offset-1") here is your shopping list
+  div(class="container col-8 col-sm-8 offset-sm-1 col-md-8 offset-md-1 col-lg-6 offset-lg-1 mt-3 mb-3")
     ul(class="list-group mt-2 mb-2")
       for item in user.items
-        li(class="list-group-item d-flex justify-content-around") 
-          p Item: 
-            span(class="font-weight-bold") #{item.name} 
-          p | Quantity: 
-            span(class="font-weight-bold") #{item.quantity}
-          form(style="display:inline" action=`/users/${user.id}/items/editItem/${item.id}`)
-            input(type="submit" value="Edit" class="btn btn-sm btn-info") 
-          form(style="display:inline" action=`/users/${user.id}/items/editItem/${item.id}?_method=DELETE` method="POST")
-            input(type ="submit" value="Completed" class="btn btn-sm btn-success")
+        li(class="list-group-item d-flex flex-md-row flex-column justify-content-between") 
+          div(class="d-flex flex-sm-row flex-column align-items-center")
+            p Item: 
+              span(class="font-weight-bold m-1") #{item.name} 
+            p  | Quantity: 
+              span(class="font-weight-bold m-1") #{item.quantity}
+          div(class="d-flex flex-sm-row flex-column align-items-center")
+            form(style="display:inline" action=`/users/${user.id}/items/editItem/${item.id}`)
+              input(type="submit" value="Edit" class="btn btn-sm btn-info m-1") 
+            form(style="display:inline" action=`/users/${user.id}/items/editItem/${item.id}?_method=DELETE` method="POST")
+              input(type ="submit" value="Completed" class="btn btn-sm btn-success m-1")
 
   div(class="col-5 offset-1 d-flex justify-content-around")
     div(class="form-group")
