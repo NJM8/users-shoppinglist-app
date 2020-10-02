@@ -1,18 +1,16 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-mongoose.set('debug', true);
+mongoose.set("debug", true);
 mongoose.Promise = global.Promise;
 
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost/users-shoppinglist-app')
+  .connect(process.env.DB_URI || "mongodb://localhost/users-shoppinglist-app")
   .then(() => {
-    return console.log('Connected to MongoDB')
+    return console.log("Connected to MongoDB");
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(`Error: ${err}`);
   });
 
-
-
-module.exports.User = require('./user');
-module.exports.Item = require('./item');
+module.exports.User = require("./user");
+module.exports.Item = require("./item");
