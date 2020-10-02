@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A basic shopping list appliction deployed with Heroku, using authentication, user management, and CRUD on a shopping list database",
   "main": "app.js",
+  "engines": {
+    "node": "14.7.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
